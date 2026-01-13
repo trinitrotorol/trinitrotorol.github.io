@@ -1,3 +1,4 @@
 User-agent: *
+Disallow: /bike_parts_viewer_app/
 Allow: /
 Sitemap: https://trinitrotorol.github.io/sitemap.xml
