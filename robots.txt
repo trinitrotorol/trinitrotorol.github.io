@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://trinitrotorol.github.io/sitemap.xml
