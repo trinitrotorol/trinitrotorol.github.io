@@ -2,9 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "trinitrotorol-github-io",
   "compatibility_date": "2026-06-23",
-  "observability": {
-    "enabled": true
-  },
+  "workers_dev": false,
   "assets": {
     "directory": "public"
   },
@@ -13,8 +11,5 @@
       "pattern": "trinitrotorol.com",
       "custom_domain": true
     }
-  ],
-  "compatibility_flags": [
-    "nodejs_compat"
   ]
 }
