@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://trinitrotorol.com/</loc>
-  </url>
-  <url>
-    <loc>https://trinitrotorol.com/game-guide/exponential-idle-minigame-guide/</loc>
-  </url>
-  <url>
-    <loc>https://trinitrotorol.com/game-guide/mhwilds-inventory-checker/</loc>
-  </url>
-  <url>
-    <loc>https://trinitrotorol.com/game-guide/mhwilds-skill-sim/</loc>
-  </url>
+  <url><loc>https://trinitrotorol.com/</loc></url>
+  <url><loc>https://trinitrotorol.com/game-guide/</loc></url>
+  <url><loc>https://trinitrotorol.com/about/</loc></url>
+  <url><loc>https://trinitrotorol.com/contact/</loc></url>
+  <url><loc>https://trinitrotorol.com/privacy/</loc></url>
+  <url><loc>https://trinitrotorol.com/game-guide/mhwilds-guide/</loc></url>
+  <url><loc>https://trinitrotorol.com/game-guide/exponential-idle-minigame-guide/</loc></url>
+  <url><loc>https://trinitrotorol.com/game-guide/mhwilds-inventory-checker/</loc></url>
+  <url><loc>https://trinitrotorol.com/game-guide/mhwilds-skill-sim/</loc></url>
 </urlset>

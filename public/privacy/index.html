@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プライバシーポリシー | trinitrotorol</title>
+  <meta name="description" content="MHWILDSのブラウザ内保存、Cloudflareによる配信とアクセス解析、GitHubでの問い合わせ、導入予定のGoogle AdSenseについて説明します。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://trinitrotorol.com/privacy/">
+  <meta name="google-adsense-account" content="ca-pub-6343181736493400">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="trinitrotorol">
+  <meta property="og:title" content="プライバシーポリシー | trinitrotorol">
+  <meta property="og:description" content="MHWILDSのブラウザ内保存、Cloudflareによる配信とアクセス解析、GitHubでの問い合わせ、導入予定のGoogle AdSenseについて説明します。">
+  <meta property="og:url" content="https://trinitrotorol.com/privacy/">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://trinitrotorol.com/"},{"@type":"ListItem","position":2,"name":"プライバシーポリシー","item":"https://trinitrotorol.com/privacy/"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="trinitrotorol トップページ"><span class="brand-mark" aria-hidden="true">t.</span><span>trinitrotorol<small>ゲーム攻略・ブラウザツール</small></span></a><nav aria-label="主なページ"><ul><li><a href="/game-guide/">ツール一覧</a></li><li><a href="/game-guide/mhwilds-guide/">MHWILDS の使い方</a></li><li><a href="/about/">このサイトについて</a></li></ul></nav></div></header>
+<main id="main" tabindex="-1" class="page reading">
+<nav class="breadcrumbs" aria-label="現在位置"><ol><li><a href="/">ホーム</a></li><li aria-current="page">プライバシーポリシー</li></ol></nav>
+<header class="page-heading"><h1>プライバシーポリシー</h1></header>
+
+<p class="lead">trinitrotorol.com で扱う情報と、利用者が確認・削除できる範囲を説明します。</p><p class="updated">最終更新：<time datetime="2026-10-07">2026年10月7日</time></p>
+<section><h2>運営者と対象</h2><p>運営者は trinitrotorol です。この方針は本ドメインの案内ページ、攻略ページ、MHWILDS ツールを対象とします。外部リンク先での情報の扱いは、それぞれのサービスの方針に従います。連絡先は<a href="/contact/">お問い合わせページ</a>をご覧ください。</p></section>
+<section id="inventory"><h2>MHWILDS の所持品と検索</h2><p>所持品チェッカーは、装飾品・固定護石の数量、鑑定護石の能力とラベル、プロフィールの識別情報、更新日時などを、このサイトに割り当てられたブラウザの保存領域（localStorage）に保存します。登録した情報は同じブラウザのスキルシミュレーターで利用されます。</p><p>現在の公開設定では、装備検索をブラウザ内で計算します。検索条件や所持情報を計算用サーバーへ送る機能は有効化していません。ただし、ページやカタログの読み込みには配信元との通信が発生します。</p><p>JSON の書出しと取込みはブラウザ内で処理されます。ダウンロードしたファイルは利用者の管理となります。ラベルなどに個人情報を含めないこと、ファイルを共有する前に内容を確認することをお勧めします。</p></section>
+<section id="storage"><h2>保存データの削除と持ち出し</h2><p>チェッカーの「JSONをダウンロード」で所持情報を保存し、別のブラウザでは「JSONから復元」で取り込めます。端末・ブラウザ間の自動同期や、運営者側の復元用バックアップはありません。</p><p>「所持情報を初期化」は登録を空にします。破損した元データが復旧用に残る場合もあるため、保存領域全体を削除したい場合は、ブラウザ設定からこのサイトのデータを削除してください。端末にダウンロードした JSON は別に削除する必要があります。</p><p>ブラウザのデータ削除、プライベートブラウジングの終了、ブラウザ側の保存領域整理などで、保存情報を利用できなくなることがあります。必要な情報は削除前に書き出してください。</p></section>
+<section id="exponential-idle"><h2>Exponential Idle ツールの設定と盤面</h2><p>Exponential Idle ミニゲーム攻略・ソルバーは、表示言語と Arrow の表示方法の選択を、このサイトに割り当てられたブラウザの保存領域（localStorage）に保存します。設定を消去したい場合は、ブラウザ設定からこのサイトのデータを削除できます。サイトのデータをまとめて削除すると、同じブラウザの MHWILDS 所持情報にも影響するため、必要なら先に JSON を保存してください。</p><p>入力した盤面と計算した解法は開いているページ内で扱い、現在の実装では永続保存しません。解法はブラウザ内で計算し、盤面を計算用サーバーへ送信しません。ページの配信とアクセス解析については、次の説明が適用されます。</p></section>
+<section id="hosting"><h2>ページ配信とアクセス解析</h2><p>本サイトは Cloudflare を利用して配信しています。通信や安全な配信のために IP アドレス、アクセスした URL、ブラウザなどの技術情報が Cloudflare で処理される場合があります。サービス提供元の取扱いは<a href="https://www.cloudflare.com/privacypolicy/">Cloudflare のプライバシーポリシー</a>をご確認ください。</p><p>トップページや攻略・案内ページでは Cloudflare Web Analytics を使用し、ページ閲覧や読み込み性能を集計します。Cloudflare はこの Web Analytics について Cookie や localStorage を解析目的に使用しないと説明しています。詳細は<a href="https://www.cloudflare.com/web-analytics/">収集方法の公式説明</a>を参照してください。</p><p>MHWILDS の所持品チェッカーとスキルシミュレーターのパスでは、Cloudflare の自動挿入による Web Analytics 計測を除外しています。この除外は、ページ配信そのものの通信がなくなるという意味ではありません。</p></section>
+<section id="advertising"><h2>広告について</h2><p><strong>現在、当サイトでは広告を配信していません。</strong>Google AdSense のサイト確認用情報を設置していますが、確認用情報だけで広告が表示されることはありません。</p><p>今後 AdSense を導入して広告を配信する場合、Google を含む第三者配信事業者が Cookie、ウェブビーコン、IP アドレス等を利用し、当サイトや他サイトへのアクセスに基づく広告の配信、効果測定、不正利用の防止のために情報を処理することがあります。広告の種類や同意の選択によって、扱う情報が異なります。</p><p>Google の情報の扱いは<a href="https://policies.google.com/technologies/partner-sites?hl=ja">Google のサービスを使用するサイトやアプリから収集した情報の使用</a>と<a href="https://policies.google.com/privacy?hl=ja">Google プライバシーポリシー</a>を参照できます。パーソナライズ広告は<a href="https://adssettings.google.com/">Google の広告設定</a>で管理できます。第三者配信事業者による広告の選択については<a href="https://optout.aboutads.info/">Digital Advertising Alliance の選択ページ</a>も参照できます。</p><p>広告配信を始める際は、本ページを実際の配信内容に合わせて更新し、対象地域で必要な同意の選択手段を用意します。ブラウザでも Cookie を管理できますが、Cookie の制限だけで全ての情報処理を停止できるとは限りません。</p></section>
+<section><h2>お問い合わせと外部サービス</h2><p>お問い合わせは GitHub Issues を利用します。投稿内容や GitHub 上のユーザー名などは公開され、運営者が確認できます。問い合わせの対応や不具合の修正に利用します。投稿・アカウント情報の扱いは<a href="https://docs.github.com/ja/site-policy/privacy-policies/github-general-privacy-statement">GitHub のプライバシー声明</a>をご確認ください。</p><p>氏名、メールアドレス、所持品の全データなどを投稿する必要はありません。公開したくない内容を含めずに<a href="/contact/">窓口</a>へお知らせください。</p></section>
+<section><h2>方針の変更</h2><p>保存の仕組みや外部サービスの利用が変わった場合は、このページを更新します。重要な操作の前に、更新日と該当する説明をご確認ください。</p></section>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p class="footer-brand">trinitrotorol</p><nav aria-label="サイト情報"><ul><li><a href="/game-guide/">ツール一覧</a></li><li><a href="/about/">このサイトについて</a></li><li><a href="/contact/">お問い合わせ</a></li><li><a href="/privacy/">プライバシーポリシー</a></li></ul></nav><p>個人運営の非公式サイトです。各ゲームの開発元・販売元とは関係ありません。</p><p><small>© 2026 trinitrotorol</small></p></div></footer>
+</body>
+</html>
