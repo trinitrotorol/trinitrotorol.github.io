@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MHWILDS 所持品登録とスキル検索の使い方 | trinitrotorol</title>
+  <meta name="description" content="MHWILDS所持品チェッカーとスキルシミュレーターの使い方。装飾品・鑑定護石の登録、必須・優先スキル、結果の読み方、JSON復元を解説します。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://trinitrotorol.com/game-guide/mhwilds-guide/">
+  <meta name="google-adsense-account" content="ca-pub-6343181736493400">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="trinitrotorol">
+  <meta property="og:title" content="MHWILDS 所持品登録とスキル検索の使い方 | trinitrotorol">
+  <meta property="og:description" content="MHWILDS所持品チェッカーとスキルシミュレーターの使い方。装飾品・鑑定護石の登録、必須・優先スキル、結果の読み方、JSON復元を解説します。">
+  <meta property="og:url" content="https://trinitrotorol.com/game-guide/mhwilds-guide/">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"ホーム","item":"https://trinitrotorol.com/"},{"@type":"ListItem","position":2,"name":"ツール一覧","item":"https://trinitrotorol.com/game-guide/"},{"@type":"ListItem","position":3,"name":"MHWILDS 所持品登録とスキル検索の使い方","item":"https://trinitrotorol.com/game-guide/mhwilds-guide/"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="trinitrotorol トップページ"><span class="brand-mark" aria-hidden="true">t.</span><span>trinitrotorol<small>ゲーム攻略・ブラウザツール</small></span></a><nav aria-label="主なページ"><ul><li><a href="/game-guide/">ツール一覧</a></li><li><a href="/game-guide/mhwilds-guide/">MHWILDS の使い方</a></li><li><a href="/about/">このサイトについて</a></li></ul></nav></div></header>
+<main id="main" tabindex="-1" class="page reading">
+<nav class="breadcrumbs" aria-label="現在位置"><ol><li><a href="/">ホーム</a></li><li><a href="/game-guide/">ツール一覧</a></li><li aria-current="page">MHWILDS 所持品登録とスキル検索の使い方</li></ol></nav>
+<header class="page-heading"><p class="eyebrow">MHWILDS GUIDE</p><h1>MHWILDS の使い方<br>所持品登録と装備検索</h1></header>
+
+<p class="lead">「持っている装飾品と護石で、必要なスキルを発動できるか」を調べるためのガイドです。所持品を使わず、収録データから候補を探すこともできます。</p><p class="updated">操作・説明の確認日：<time datetime="2026-10-07">2026年10月7日</time> · 対象：現在の公開ブラウザ版</p>
+<nav class="toc" aria-label="このページの目次"><h2>このページの内容</h2><ol><li><a href="#start">2つのツールの役割</a></li><li><a href="#inventory">所持品を登録する</a></li><li><a href="#search">検索条件を決める</a></li><li><a href="#results">結果と検索の限界</a></li><li><a href="#backup">JSONで保存・復元する</a></li><li><a href="#catalog">カタログ変更と困ったとき</a></li></ol></nav>
+<section id="start"><h2>1. 2つのツールの役割を分ける</h2><p><a href="/game-guide/mhwilds-inventory-checker/">所持品チェッカー</a>は、装飾品・固定護石の数量と鑑定護石の能力を記録する場所です。<a href="/game-guide/mhwilds-skill-sim/">スキルシミュレーター</a>は、武器種やスキル条件から装備の組み合わせを探す場所です。</p><p>両方を同じ端末・同じブラウザの trinitrotorol.com で開いてください。別の端末やブラウザでは、同じ所持情報は自動的に読み込まれません。移行には後述の JSON バックアップを使います。</p><div class="actions"><a class="button" href="/game-guide/mhwilds-inventory-checker/">所持品を登録する</a><a class="button secondary" href="/game-guide/mhwilds-skill-sim/">装備を検索する</a></div></section>
+<section id="inventory"><h2>2. 所持品を登録する</h2><h3>装飾品と固定護石</h3><p>チェッカーで「装飾品」または「固定護石」を選び、名称・ID・スキルで検索します。対象の数量を入力すると、このブラウザに自動保存されます。0 個は未所持として扱われます。固定護石も複数個の数量を保持できます。</p><p>登録後はページ上部の保存状態を確認してください。「未保存の変更あり」「保存競合」などが表示される場合は、そのまま画面を閉じず、表示される案内に従って JSON を退避してください。</p><h3>鑑定護石</h3><p>「鑑定護石」から「＋ 鑑定護石を登録」を選び、ゲーム内で確認したスキル、レベル、スロット、レア度を入力します。現在の検証ルールに一致した個体を保存できます。登録後は編集・複製・削除ができます。</p><p>似た能力の護石でも、別の個体として登録したものは別に扱われます。入力した組み合わせが受け付けられない場合は、まずゲーム内の能力を確認してください。収録ルールの不足が疑われるときは、能力とカタログ版を添えて<a href="/contact/">報告</a>できます。</p><aside class="notice"><h3>少しずつ登録して始める</h3><p>登録は後から追加できます。ただし「所持品を考慮する」を選ぶ検索では、未登録の装飾品は 0 個です。最初は検索に使いそうな装飾品と、使いたい護石を確認すると登録漏れを見つけやすくなります。</p></aside></section>
+<section id="search"><h2>3. 検索条件を決める</h2><h3>必須スキルと優先スキルの違い</h3><dl class="definitions"><dt>必須スキル</dt><dd>指定した最低レベルを、すべて満たす必要があります。これを満たさない構成は候補に入りません。</dd><dt>優先スキル</dt><dd>必須条件を満たす構成の中で、指定した目標に向けて合計レベルの高い構成を優先します。優先に入れただけでは、目標レベルの達成が必須にはなりません。</dd></dl><p>例えば「このスキルの Lv.3 は必ず必要」であれば必須に設定します。「別のスキルも可能なら伸ばしたい」であれば優先に設定します。初めから全てを必須にせず、譲れない条件から検索し、結果を見て追加すると条件の影響が分かりやすくなります。</p><h3>武器種・所持品・件数</h3><ol class="reading-list"><li>必要に応じて武器種を選びます。「指定なし」では武器種を絞りません。</li><li>手持ちで探す場合は「所持品を考慮する」を選びます。未登録の装飾品は 0 個、護石は登録している個体を使って検索します。この機能は武器や防具の生産・所持状況を登録するものではありません。</li><li>表示件数を 1〜20 件から選びます。最初は少ない件数で条件を確認できます。</li><li>「検索する」を選びます。途中で条件を見直すときは「検索を中断」を使います。</li></ol><p>現在の公開版はブラウザ内で計算します。計算方法に「利用可能ならサーバー、利用できなければブラウザ」を選んでも、現在サーバー検索は有効化されていないためブラウザを使用します。端末の性能や条件によって探索時間は変わります。</p></section>
+<section id="results"><h2>4. 結果を読み、限界を確認する</h2><p>各候補には「装備」「装飾品」「発動スキル」が表示されます。装飾品は、どの装備の何番目のスロットに配置されるかまで確認してください。武器用と防具用の装飾品は別のスロット種別として扱われます。</p><p>「優先スコア」は入力した優先条件に対する比較値です。攻撃力や実戦のダメージ順位ではありません。スキル名が同じでも、ゲーム内での発動条件や自分の立ち回りは別に確認してください。</p><div class="table-wrap"><table><caption>表示メッセージの読み方</caption><thead><tr><th scope="col">表示</th><th scope="col">意味と次の操作</th></tr></thead><tbody><tr><th scope="row">候補が表示された</th><td>表示された装備と装飾品の配置を確認します。武器・防具を実際に所持または生産できるかはゲーム内で確認してください。</td></tr><tr><th scope="row">表示上限まで候補を表示</th><td>すべての組み合わせを列挙したという意味ではありません。表示件数やスキル条件を調整して比較します。</td></tr><tr><th scope="row">時間内に探索が完了しなかった</th><td>探索途中の結果です。候補が 0 件でも、条件を満たす構成が存在しないと断定できません。</td></tr><tr><th scope="row">条件を満たす構成が見つからなかった</th><td>入力条件と収録データでの結果です。必須レベル、装飾品の登録漏れ、護石の能力、カタログ版を確認します。</td></tr></tbody></table></div><p>候補が出ないときは、まず優先条件ではなく必須条件を 1 つずつ見直します。所持品を考慮しない検索で候補が出る場合は、所持数や登録した護石が制約になっている可能性があります。条件を緩めた結果が、現在の手持ちでそのまま組めるとは限りません。</p></section>
+<section id="backup"><h2>5. JSON で保存・復元する</h2><p>チェッカーの「JSONをダウンロード」でバックアップを保存します。端末変更、ブラウザのデータ削除、護石の大量編集の前に保存しておくと、元の登録内容を残せます。</p><p>復元先で「JSONから復元」を選ぶと、内容を検証したうえで確認画面が開きます。表示された件数や警告を確認して、次の方法を選んでください。</p><dl class="definitions"><dt>現在の所持情報と統合</dt><dd>同じ ID の所持数は加算せず、多い方を採用します。たとえば現在 2 個、バックアップ 3 個なら 3 個です。同じ鑑定護石 ID で能力が異なる場合は統合を中止します。</dd><dt>バックアップで全体を置換</dt><dd>現在の登録を、バックアップの内容に入れ替えます。現在の情報も必要なら、先に別の JSON として保存してください。</dd></dl><p>別の鑑定護石 ID は、能力が同じでも別個体として扱います。データが破損している場合、通常の JSON ダウンロードに破損した元データは含まれません。画面に「元の保存データを退避」が出ている場合は、その機能を使って元データを残してください。</p></section>
+<section id="catalog"><h2>6. カタログ変更・保存エラーへの対応</h2><h3>「保存時と現在のカタログの版が異なる」とき</h3><p>現在のカタログにない ID や、現在のルールで検証できない鑑定護石は、登録内容を保持したまま警告されます。検索では利用できない場合があるため、対象を確認してください。チェッカーで内容を確認して参照版を更新し、シミュレーターの除外確認が表示された場合は、その対象を確認してから進めます。</p><h3>保存競合や保存領域エラーが出たとき</h3><p>同じ所持品を複数のタブで同時に編集すると、保存競合が起こることがあります。未保存の内容を JSON で退避し、「最新の保存データを読み込む」で状態を確認してから統合してください。保存領域を利用できない表示の場合はブラウザのプライバシー設定も確認します。</p><h3>データの出典と報告</h3><p>装備・スキル等のデータは MHDB、鑑定護石の検証は公開解析情報を参照しています。詳細は<a href="/about/#sources">出典と更新方針</a>をご覧ください。問題が続く場合は、カタログ版、操作手順、具体的な入力を<a href="/contact/">問い合わせ窓口</a>へお知らせください。バックアップ全体や個人情報を公開する必要はありません。</p></section>
+<div class="actions"><a class="button" href="/game-guide/mhwilds-inventory-checker/">所持品チェッカーを開く</a><a class="button secondary" href="/game-guide/mhwilds-skill-sim/">スキルシミュレーターを開く</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p class="footer-brand">trinitrotorol</p><nav aria-label="サイト情報"><ul><li><a href="/game-guide/">ツール一覧</a></li><li><a href="/about/">このサイトについて</a></li><li><a href="/contact/">お問い合わせ</a></li><li><a href="/privacy/">プライバシーポリシー</a></li></ul></nav><p>個人運営の非公式サイトです。各ゲームの開発元・販売元とは関係ありません。</p><p><small>© 2026 trinitrotorol</small></p></div></footer>
+</body>
+</html>
