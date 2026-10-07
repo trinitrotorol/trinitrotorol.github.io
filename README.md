@@ -12,3 +12,10 @@ https://trinitrotorol.com/
 - GitHub Pages source: `main` branch, `/docs` folder.
 - Do not set a custom domain on GitHub Pages.
 - Do not add a `CNAME` file.
+
+## AdSense site verification
+
+`public/ads.txt` and the non-executing `google-adsense-account` meta tag in
+`public/index.html` identify publisher `pub-6343181736493400` for the
+`trinitrotorol.com` AdSense site review. They do not load advertising scripts or
+enable ad display. Approval and ad serving are separate steps in AdSense.
