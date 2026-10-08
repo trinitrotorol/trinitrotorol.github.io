@@ -27,7 +27,11 @@ Each content page has its own title, description, canonical URL, Open Graph
 metadata, and navigation to the operator, contact, and privacy pages. The
 MHWILDS guide describes the currently deployed browser implementation.
 
-The three existing tool paths remain served by their separate Workers. Do not
+Exponential Idle remains on its existing path. The Wilds tools are served at
+https://mhwilds.trinitrotorol.com/skill-sim/ and /inventory/ by their existing
+Worker. Its old root-domain paths redirect to the new site, with `?legacy=1`
+retained for browser-local JSON export; the guide documents migration.
+Each host publishes a sitemap containing its own canonical URLs. Do not
 copy those apps into this repository or broaden their routes. Root
 `assets.not_found_handling: "404-page"` serves `public/404.html` with HTTP 404;
 it does not redirect unknown URLs to the homepage.

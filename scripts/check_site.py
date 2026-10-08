@@ -25,6 +25,9 @@ APP_PATHS = {
     "/game-guide/mhwilds-skill-sim/",
 }
 REMOTE_RESOURCES = {"/game-guide/mhwilds-skill-sim/release.json"}
+INDEXED_APP_PATHS = {"/game-guide/exponential-idle-minigame-guide/"}
+WILDS_ORIGIN = "https://mhwilds.trinitrotorol.com"
+WILDS_PATHS = {"/skill-sim/", "/inventory/", "/skill-sim/release.json"}
 ADS = b"google.com, pub-6343181736493400, DIRECT, f08c47fec0942fa0\n"
 
 
@@ -142,9 +145,13 @@ def main() -> None:
                 if raw := attrs.get(key):
                     url = urlsplit(urljoin(ORIGIN + path, raw))
                     require(url.scheme == "https", f"{path}: unexpected link scheme {raw}")
+                    if url.netloc == "mhwilds.trinitrotorol.com":
+                        require(url.path in WILDS_PATHS, f"{path}: invalid Wilds URL {raw}")
                     if url.netloc != "trinitrotorol.com":
                         continue
                     target = unquote(url.path)
+                    if target in APP_PATHS - INDEXED_APP_PATHS:
+                        require(url.query == "legacy=1", f"{path}: outdated Wilds link {raw}")
                     require(target in APP_PATHS | REMOTE_RESOURCES or source_for(target).is_file(), f"{path}: missing {raw}")
                     if url.fragment and target in pages:
                         require(unquote(url.fragment) in pages[target].ids, f"{path}: missing fragment {raw}")
@@ -159,7 +166,7 @@ def main() -> None:
             require(items[-1]["item"] == ORIGIN + path, f"{path}: breadcrumb target")
     sitemap = ET.parse(PUBLIC / "sitemap.xml")
     locations = [item.text for item in sitemap.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-    expected = {ORIGIN + path for path in set(pages) - {"/404.html"} | APP_PATHS}
+    expected = {ORIGIN + path for path in set(pages) - {"/404.html"} | INDEXED_APP_PATHS}
     require(len(locations) == len(set(locations)) and set(locations) == expected, "Sitemap mismatch")
     require((PUBLIC / "ads.txt").read_bytes() == ADS, "ads.txt changed")
     config = json.loads((ROOT / "wrangler.jsonc").read_text(encoding="utf-8"))
@@ -170,6 +177,9 @@ def main() -> None:
     for expected_link in ("https://policies.google.com/technologies/partner-sites?hl=ja", "https://adssettings.google.com/", "https://www.cloudflare.com/privacypolicy/", "https://docs.github.com/ja/site-policy/privacy-policies/github-general-privacy-statement"):
         require(expected_link in policy, f"Missing policy source: {expected_link}")
     require("現在、当サイトでは広告を配信していません。" in policy, "Current advertising status missing")
+    require("mhwilds.trinitrotorol.com" in policy, "New storage origin missing from policy")
+    migration = (PUBLIC / "game-guide/mhwilds-guide/index.html").read_text(encoding="utf-8")
+    require('id="migration"' in migration and '?legacy=1' in migration, "Legacy inventory export instructions missing")
     ET.parse(PUBLIC / "favicon.svg")
     require("Sitemap: " + ORIGIN + "/sitemap.xml" in (PUBLIC / "robots.txt").read_text(), "robots sitemap missing")
     print(f"PASS: {len(pages)} HTML pages, links/fragments, unique metadata, JSON-LD, sitemap, ads.txt, policy links, custom404 config")
@@ -182,6 +192,10 @@ def main() -> None:
             if path == "/ads.txt":
                 require(body.encode() == ADS and "text/plain" in content_type, "Published ads.txt mismatch")
             print(f"PASS HTTP 200: {path}")
+        for path in sorted(WILDS_PATHS):
+            status, _, _ = read_http(WILDS_ORIGIN, path)
+            require(status == 200, f"HTTP {status}: {WILDS_ORIGIN}{path}")
+            print(f"PASS HTTP 200: {WILDS_ORIGIN}{path}")
         status, body, _ = read_http(args.base_url, "/__site-check-missing-20261007__/")
         require(status == 404, f"Unknown route returned {status}, not real404")
         require(Page(body).title == pages["/404.html"].title, "Custom404 content missing")
