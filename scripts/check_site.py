@@ -26,6 +26,7 @@ APP_PATHS = {
 }
 REMOTE_RESOURCES = {"/game-guide/mhwilds-skill-sim/release.json"}
 INDEXED_APP_PATHS = {"/game-guide/exponential-idle-minigame-guide/"}
+METRICS_PATHS = {"/site-metrics/", "/site-metrics/privacy/", "/site-metrics/terms/"}
 WILDS_ORIGIN = "https://mhwilds.trinitrotorol.com"
 WILDS_PATHS = {"/skill-sim/", "/inventory/", "/skill-sim/release.json"}
 ADS = b"google.com, pub-6343181736493400, DIRECT, f08c47fec0942fa0\n"
@@ -113,7 +114,7 @@ def main() -> None:
     args = parser.parse_args()
     files = sorted(PUBLIC.rglob("*.html"))
     pages = {page_path(file): Page(file.read_text(encoding="utf-8")) for file in files}
-    require(len(pages) == 7, "Expected the six public content pages and one 404 page")
+    require(len(pages) == 10 and METRICS_PATHS <= pages.keys(), "Expected six indexed pages, three app information pages, and one 404 page")
     titles: set[str] = set()
     descriptions: set[str] = set()
     for path, page in pages.items():
@@ -129,13 +130,14 @@ def main() -> None:
         require(page.values("link", "rel", "stylesheet", "href") == ["/assets/site.css"], f"{path}: CSS")
         require(page.values("meta", "property", "og:title", "content") == [page.title], f"{path}: OG title")
         require(page.values("meta", "property", "og:url", "content") == [ORIGIN + path], f"{path}: OG URL")
-        require(page.values("meta", "name", "google-adsense-account", "content") == ["ca-pub-6343181736493400"], f"{path}: publisher")
+        publisher = [] if path in METRICS_PATHS else ["ca-pub-6343181736493400"]
+        require(page.values("meta", "name", "google-adsense-account", "content") == publisher, f"{path}: publisher")
         robots = page.values("meta", "name", "robots", "content")
         if path == "/404.html":
             require(robots == ["noindex,follow"], "404 must be noindex")
             require(not page.values("link", "rel", "canonical", "href"), "404 must not canonicalize to home")
         else:
-            require(robots == ["index,follow"], f"{path}: indexing")
+            require(robots == ["noindex,follow" if path in METRICS_PATHS else "index,follow"], f"{path}: indexing")
             require(page.values("link", "rel", "canonical", "href") == [ORIGIN + path], f"{path}: canonical")
         for tag, attrs in page.tags:
             if tag == "script":
@@ -159,6 +161,9 @@ def main() -> None:
         require(links == ["#main"] and "main" in page.ids, f"{path}: skip link")
         hrefs = {attrs.get("href") for tag, attrs in page.tags if tag == "a"}
         require({"/about/", "/contact/", "/privacy/"} <= hrefs, f"{path}: missing policy navigation")
+        if path in METRICS_PATHS:
+            require(METRICS_PATHS <= hrefs, f"{path}: missing application policy navigation")
+            require("trinitrotorol Site Metrics" in page.title, f"{path}: application identity")
         for schema in page.structured:
             require(schema["@type"] == "BreadcrumbList", f"{path}: unsupported structured data")
             items = schema["itemListElement"]
@@ -166,7 +171,7 @@ def main() -> None:
             require(items[-1]["item"] == ORIGIN + path, f"{path}: breadcrumb target")
     sitemap = ET.parse(PUBLIC / "sitemap.xml")
     locations = [item.text for item in sitemap.findall("{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
-    expected = {ORIGIN + path for path in set(pages) - {"/404.html"} | INDEXED_APP_PATHS}
+    expected = {ORIGIN + path for path in (set(pages) - {"/404.html"} - METRICS_PATHS) | INDEXED_APP_PATHS}
     require(len(locations) == len(set(locations)) and set(locations) == expected, "Sitemap mismatch")
     require((PUBLIC / "ads.txt").read_bytes() == ADS, "ads.txt changed")
     config = json.loads((ROOT / "wrangler.jsonc").read_text(encoding="utf-8"))
