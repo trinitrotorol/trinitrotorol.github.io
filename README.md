@@ -48,6 +48,16 @@ and each application's CSP and network checks together. The current pages do
 not claim ads or a consent banner are live. Root/guide Web Analytics remains
 enabled through Cloudflare; the existing MHWILDS path exclusions remain separate.
 
+## Site Metrics application information
+
+`/site-metrics/`, `/site-metrics/privacy/`, and `/site-metrics/terms/` describe
+the operator-only `trinitrotorol Site Metrics` CLI for Google OAuth branding.
+These static pages explain read-only AdSense access and data handling; they
+do not provide public account sign-in. Keep their exact URLs aligned with
+the OAuth branding configuration. They use `noindex,follow` and are omitted
+from the sitemap. Do not publish credentials, account/client identifiers,
+or private revenue reports in these pages or their assets.
+
 References: [Digital Agency design system](https://design.digital.go.jp/dads/),
 [Google Search basics](https://developers.google.com/search/docs/fundamentals/get-started-developers),
 [AdSense privacy disclosures](https://support.google.com/adsense/answer/1348695?hl=ja),
