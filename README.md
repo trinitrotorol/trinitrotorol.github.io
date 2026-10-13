@@ -22,7 +22,12 @@ enable ad display. Approval and ad serving are separate steps in AdSense.
 
 ## Content and verification
 
-The site consists of static Japanese HTML with shared CSS in `public/assets/`.
+The site consists of static HTML with shared CSS in `public/assets/`. Most
+pages are in Japanese; the MHWILDS guide also has a complete English version
+at `/en/game-guide/mhwilds-guide/`. Both guides have self-canonical URLs,
+reciprocal language links and `hreflang`, and are listed in the sitemap.
+Keep the UI labels and migration/backup instructions aligned in both versions.
+The guides do not automatically change the tools' saved language setting.
 Each content page has its own title, description, canonical URL, Open Graph
 metadata, and navigation to the operator, contact, and privacy pages. The
 MHWILDS guide describes the currently deployed browser implementation.
@@ -52,11 +57,12 @@ enabled through Cloudflare; the existing MHWILDS path exclusions remain separate
 
 `/site-metrics/`, `/site-metrics/privacy/`, and `/site-metrics/terms/` describe
 the operator-only `trinitrotorol Site Metrics` CLI for Google OAuth branding.
-These static pages explain read-only AdSense access and data handling; they
+These static pages explain read-only AdSense and Search Console access,
+private local reports, and operator-directed analysis in Codex; they
 do not provide public account sign-in. Keep their exact URLs aligned with
 the OAuth branding configuration. They use `noindex,follow` and are omitted
 from the sitemap. Do not publish credentials, account/client identifiers,
-or private revenue reports in these pages or their assets.
+or private revenue/search performance reports in these pages or their assets.
 
 References: [Digital Agency design system](https://design.digital.go.jp/dads/),
 [Google Search basics](https://developers.google.com/search/docs/fundamentals/get-started-developers),

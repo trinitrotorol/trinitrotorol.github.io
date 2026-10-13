@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>プライバシーポリシー | trinitrotorol Site Metrics</title>
-  <meta name="description" content="運営者専用アプリ trinitrotorol Site Metrics が取得する AdSense のデータ、利用目的、保存、Codexでの分析、連携解除と削除について説明します。">
+  <meta name="description" content="運営者専用アプリ trinitrotorol Site Metrics が取得する AdSense・Search Console のデータ、利用目的、端末保存、Codexでの分析、連携解除と削除について説明します。">
   <meta name="robots" content="noindex,follow">
   <link rel="canonical" href="https://trinitrotorol.com/site-metrics/privacy/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="trinitrotorol">
   <meta property="og:title" content="プライバシーポリシー | trinitrotorol Site Metrics">
-  <meta property="og:description" content="運営者専用アプリ trinitrotorol Site Metrics が取得する AdSense のデータ、利用目的、保存、Codexでの分析、連携解除と削除について説明します。">
+  <meta property="og:description" content="運営者専用アプリ trinitrotorol Site Metrics が取得する AdSense・Search Console のデータ、利用目的、端末保存、Codexでの分析、連携解除と削除について説明します。">
   <meta property="og:url" content="https://trinitrotorol.com/site-metrics/privacy/">
   <meta property="og:locale" content="ja_JP">
   <meta name="twitter:card" content="summary">
@@ -26,11 +26,11 @@
 <nav aria-label="アプリ情報"><p><a href="/site-metrics/">アプリ概要</a>・<a href="/site-metrics/privacy/">プライバシーポリシー</a>・<a href="/site-metrics/terms/">利用条件</a></p></nav>
 <p class="lead">このポリシーは、運営者専用アプリ「trinitrotorol Site Metrics」による Google データの取り扱いを説明します。一般の方の Google アカウントを接続するサービスではありません。</p>
 <p class="updated">更新日：2026年10月13日</p>
-<section><h2>取得する情報と権限</h2><p>運営者本人が Google の認可画面で許可した AdSense の読み取り専用権限を使用します。AdSense のサイト状態、見積もり収益や広告実績を取得し、過去7日・28日の集計として確認します。対象サイトを照合するために、API応答に含まれるサイト名などの情報も扱います。</p><p>認可に伴うアクセストークンや更新トークンは、Google API への接続を維持するために使用します。広告設定や支払い情報を変更する権限は要求しません。</p></section>
-<section><h2>利用目的と分析</h2><p>取得した情報は、運営者がサイトの公開状況や広告実績を確認し、サイトの改善点を調べるために利用します。</p><p>運営者が Codex に分析を依頼する際、見積もり収益や広告実績の集計結果を Codex に渡し、そこで扱う場合があります。認可情報を分析用の入力に含めることはありません。Codex に渡した内容や会話記録の保存・取り扱いは、利用するサービスの設定と方針の対象になります。</p></section>
-<section><h2>保存と公開範囲</h2><p>認可情報は運営者の Windows 端末に保存し、Windows DPAPI の CurrentUser 保護を使用します。これは、その Windows ユーザーに対応した保護です。</p><p>認可情報や非公開の収益データは、Git リポジトリやサイトの公開ファイルには含めません。取得結果のローカル出力や分析記録を保存した場合は、運営者が管理し、不要になった時点で削除します。</p><p>この説明ページ自体の配信やアクセスに関する情報は、<a href="/privacy/">サイト全体のプライバシーポリシー</a>に記載しています。</p></section>
-<section><h2>連携の解除とデータの削除</h2><p>運営者は、<a href="https://myaccount.google.com/connections">Google アカウントのサードパーティ接続の管理</a>で、このアプリへのアクセスを取り消せます。端末に保存した認可情報と、不要になった出力・記録を削除することで利用を停止できます。</p><p>Google でのアクセス取り消しだけでは、取得済みのローカル出力は削除されません。また、端末上の削除では Codex に渡した集計結果や会話記録も同時には削除されないため、必要に応じて利用サービス側でも管理・削除してください。</p></section>
-<section><h2>お問い合わせ</h2><p>運営者は <a href="/about/#operator">trinitrotorol</a> です。データの取り扱いに関する連絡は<a href="/contact/">お問い合わせページ</a>をご利用ください。公開の窓口にトークン、パスワード、非公開の収益データなどを投稿しないでください。</p></section>
+<section><h2>取得する情報と権限</h2><p>運営者本人が Google の認可画面で許可した AdSense と Search Console の読み取り専用権限を使用します。AdSense のサイト状態、見積もり収益や広告実績を取得し、過去7日・28日の集計として確認します。対象サイトを照合するために、API応答に含まれるサイト名などの情報も扱います。</p><p>Search Console からは、対象サイト（プロパティ）のURLやアクセス権限の情報、Google 検索のクリック数・表示回数・クリック率（CTR）・平均掲載順位を取得します。確定データの7日・28日と、その前の同じ長さの期間について、全体の集計と上位の検索語・ページURLを扱います。公開ルートサイトと MHWILDS サイト別の集計、および確定データが確認できる日付の確認にも使用します。</p><p>検索語・ページ別のレポートは上位データで、APIで省略される検索語もあります。すべての検索語や個々の利用者の閲覧履歴を取得するものではありません。</p><p>認可に伴うアクセストークンや更新トークンは、Google API への接続を維持するために使用します。広告設定や支払い情報の変更、Search Console のサイト登録・設定変更やインデックス登録のリクエストを行う権限は要求しません。</p></section>
+<section><h2>利用目的と分析</h2><p>取得した情報は、運営者がサイトの公開状況、広告実績や検索での表示状況を確認し、サイトの改善点を調べるために利用します。</p><p>運営者が Codex に分析を依頼する際、見積もり収益・広告実績・検索実績の集計結果と、分析に必要な検索語やページURLを Codex に渡し、そこで扱う場合があります。認可情報を分析用の入力に含めることはありません。Codex に渡した内容や会話記録の保存・取り扱いは、利用するサービスの設定と方針の対象になります。</p></section>
+<section><h2>保存と公開範囲</h2><p>認可情報は運営者の Windows 端末に保存し、Windows DPAPI の CurrentUser 保護を使用します。これは、その Windows ユーザーに対応した保護です。</p><p>認可情報、非公開の収益データ、検索語・ページURLを含む検索実績レポートは、Git リポジトリやサイトの公開ファイルには含めません。取得結果は運営者の端末の非公開領域に保存します。ローカル出力や分析記録は運営者が管理し、不要になった時点で削除します。</p><p>この説明ページ自体の配信やアクセスに関する情報は、<a href="/privacy/">サイト全体のプライバシーポリシー</a>に記載しています。</p></section>
+<section><h2>連携の解除とデータの削除</h2><p>運営者は、<a href="https://myaccount.google.com/connections">Google アカウントのサードパーティ接続の管理</a>で、このアプリへのアクセスを取り消せます。端末に保存した認可情報と、不要になった出力・記録を削除することで利用を停止できます。</p><p>Google でのアクセス取り消しだけでは、取得済みのローカル出力は削除されません。また、端末上の削除では Codex に渡した検索語・ページURL・集計結果や会話記録も同時には削除されないため、必要に応じて利用サービス側でも管理・削除してください。</p></section>
+<section><h2>お問い合わせ</h2><p>運営者は <a href="/about/#operator">trinitrotorol</a> です。データの取り扱いに関する連絡は<a href="/contact/">お問い合わせページ</a>をご利用ください。公開の窓口にトークン、パスワード、非公開の収益データや検索実績レポートなどを投稿しないでください。</p></section>
 </main>
 <footer class="site-footer"><div class="footer-inner"><p class="footer-brand">trinitrotorol</p><nav aria-label="サイト情報"><ul><li><a href="/game-guide/">ツール一覧</a></li><li><a href="/about/">このサイトについて</a></li><li><a href="/contact/">お問い合わせ</a></li><li><a href="/privacy/">プライバシーポリシー</a></li></ul></nav><p><small>© 2026 trinitrotorol</small></p></div></footer>
 </body>

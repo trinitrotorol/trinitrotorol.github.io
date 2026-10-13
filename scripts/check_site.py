@@ -27,6 +27,7 @@ APP_PATHS = {
 REMOTE_RESOURCES = {"/game-guide/mhwilds-skill-sim/release.json"}
 INDEXED_APP_PATHS = {"/game-guide/exponential-idle-minigame-guide/"}
 METRICS_PATHS = {"/site-metrics/", "/site-metrics/privacy/", "/site-metrics/terms/"}
+GUIDE_PATHS = {"ja": "/game-guide/mhwilds-guide/", "en": "/en/game-guide/mhwilds-guide/"}
 WILDS_ORIGIN = "https://mhwilds.trinitrotorol.com"
 WILDS_PATHS = {"/skill-sim/", "/inventory/", "/skill-sim/release.json"}
 ADS = b"google.com, pub-6343181736493400, DIRECT, f08c47fec0942fa0\n"
@@ -114,7 +115,7 @@ def main() -> None:
     args = parser.parse_args()
     files = sorted(PUBLIC.rglob("*.html"))
     pages = {page_path(file): Page(file.read_text(encoding="utf-8")) for file in files}
-    require(len(pages) == 10 and METRICS_PATHS <= pages.keys(), "Expected six indexed pages, three app information pages, and one 404 page")
+    require(len(pages) == 11 and METRICS_PATHS <= pages.keys(), "Expected seven indexed pages, three app information pages, and one 404 page")
     titles: set[str] = set()
     descriptions: set[str] = set()
     for path, page in pages.items():
@@ -125,11 +126,13 @@ def main() -> None:
         require(len(description) == 1 and description[0] not in descriptions, f"{path}: description")
         descriptions.add(description[0])
         require(not page.duplicates, f"{path}: duplicate IDs {page.duplicates}")
-        require(("html", {"lang": "ja"}) in page.tags, f"{path}: Japanese language")
+        language = "en" if path == GUIDE_PATHS["en"] else "ja"
+        require(("html", {"lang": language}) in page.tags, f"{path}: document language")
         require(page.values("link", "rel", "icon", "href") == ["/favicon.svg"], f"{path}: favicon")
         require(page.values("link", "rel", "stylesheet", "href") == ["/assets/site.css"], f"{path}: CSS")
         require(page.values("meta", "property", "og:title", "content") == [page.title], f"{path}: OG title")
         require(page.values("meta", "property", "og:url", "content") == [ORIGIN + path], f"{path}: OG URL")
+        require(page.values("meta", "property", "og:locale", "content") == ["en_US" if language == "en" else "ja_JP"], f"{path}: OG locale")
         publisher = [] if path in METRICS_PATHS else ["ca-pub-6343181736493400"]
         require(page.values("meta", "name", "google-adsense-account", "content") == publisher, f"{path}: publisher")
         robots = page.values("meta", "name", "robots", "content")
@@ -164,6 +167,18 @@ def main() -> None:
         if path in METRICS_PATHS:
             require(METRICS_PATHS <= hrefs, f"{path}: missing application policy navigation")
             require("trinitrotorol Site Metrics" in page.title, f"{path}: application identity")
+        if path in GUIDE_PATHS.values():
+            alternate_links = [attrs for tag, attrs in page.tags if tag == "link" and attrs.get("rel") == "alternate"]
+            expected_alternates = {locale: ORIGIN + target for locale, target in GUIDE_PATHS.items()}
+            expected_alternates["x-default"] = ORIGIN + GUIDE_PATHS["ja"]
+            require(len(alternate_links) == 3 and {attrs.get("hreflang"): attrs.get("href") for attrs in alternate_links} == expected_alternates, f"{path}: reciprocal hreflang")
+            for locale, target in GUIDE_PATHS.items():
+                switches = [attrs for tag, attrs in page.tags if tag == "a" and attrs.get("href") == target and attrs.get("hreflang") == locale]
+                require(len(switches) == 1 and switches[0].get("lang") == locale, f"{path}: visible language link for {locale}")
+                require(switches[0].get("aria-current") == ("page" if locale == language else None), f"{path}: current guide language")
+            require({"start", "inventory", "search", "results", "backup", "migration", "catalog"} <= page.ids, f"{path}: complete guide sections")
+        if path in {"/", "/game-guide/"}:
+            require(GUIDE_PATHS["en"] in hrefs, f"{path}: English guide entrance")
         for schema in page.structured:
             require(schema["@type"] == "BreadcrumbList", f"{path}: unsupported structured data")
             items = schema["itemListElement"]
@@ -183,11 +198,12 @@ def main() -> None:
         require(expected_link in policy, f"Missing policy source: {expected_link}")
     require("現在、当サイトでは広告を配信していません。" in policy, "Current advertising status missing")
     require("mhwilds.trinitrotorol.com" in policy, "New storage origin missing from policy")
-    migration = (PUBLIC / "game-guide/mhwilds-guide/index.html").read_text(encoding="utf-8")
-    require('id="migration"' in migration and '?legacy=1' in migration, "Legacy inventory export instructions missing")
+    for path in GUIDE_PATHS.values():
+        migration = source_for(path).read_text(encoding="utf-8")
+        require('id="migration"' in migration and '?legacy=1' in migration, f"{path}: legacy inventory export instructions missing")
     ET.parse(PUBLIC / "favicon.svg")
     require("Sitemap: " + ORIGIN + "/sitemap.xml" in (PUBLIC / "robots.txt").read_text(), "robots sitemap missing")
-    print(f"PASS: {len(pages)} HTML pages, links/fragments, unique metadata, JSON-LD, sitemap, ads.txt, policy links, custom404 config")
+    print(f"PASS: {len(pages)} HTML pages, links/fragments, unique metadata, bilingual guides/hreflang, JSON-LD, sitemap, ads.txt, policy links, custom404 config")
     if args.base_url:
         for path in sorted(set(pages) - {"/404.html"} | APP_PATHS | {"/ads.txt", "/sitemap.xml", "/assets/site.css", "/favicon.svg"}):
             status, body, content_type = read_http(args.base_url, path)
