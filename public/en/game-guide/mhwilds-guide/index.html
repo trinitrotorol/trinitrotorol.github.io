@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MHWILDS Inventory Checker and Skill Simulator Guide | trinitrotorol</title>
+  <meta name="description" content="Learn to register decorations and charms, set required and preferred skills, read equipment search results, and back up or restore MHWILDS inventory with JSON.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://trinitrotorol.com/en/game-guide/mhwilds-guide/">
+  <link rel="alternate" hreflang="ja" href="https://trinitrotorol.com/game-guide/mhwilds-guide/">
+  <link rel="alternate" hreflang="en" href="https://trinitrotorol.com/en/game-guide/mhwilds-guide/">
+  <link rel="alternate" hreflang="x-default" href="https://trinitrotorol.com/game-guide/mhwilds-guide/">
+  <meta name="google-adsense-account" content="ca-pub-6343181736493400">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="trinitrotorol">
+  <meta property="og:title" content="MHWILDS Inventory Checker and Skill Simulator Guide | trinitrotorol">
+  <meta property="og:description" content="Learn to register decorations and charms, set required and preferred skills, read equipment search results, and back up or restore MHWILDS inventory with JSON.">
+  <meta property="og:url" content="https://trinitrotorol.com/en/game-guide/mhwilds-guide/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://trinitrotorol.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://trinitrotorol.com/game-guide/"},{"@type":"ListItem","position":3,"name":"MHWILDS Inventory Checker and Skill Simulator Guide","item":"https://trinitrotorol.com/en/game-guide/mhwilds-guide/"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/" aria-label="trinitrotorol home (Japanese)"><span class="brand-mark" aria-hidden="true">t.</span><span>trinitrotorol<small>Game guides and browser tools</small></span></a><nav aria-label="Main navigation"><ul><li><a href="/game-guide/">Tools (Japanese)</a></li><li><a href="/en/game-guide/mhwilds-guide/">MHWILDS guide</a></li><li><a href="/about/">About (Japanese)</a></li></ul></nav></div></header>
+<main id="main" tabindex="-1" class="page reading">
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home (Japanese)</a></li><li><a href="/game-guide/">Tools (Japanese)</a></li><li aria-current="page">MHWILDS guide</li></ol></nav>
+<header class="page-heading"><p class="eyebrow">MHWILDS GUIDE</p><h1>MHWILDS guide<br>Inventory and equipment search</h1></header>
+<nav class="actions" aria-label="Guide language"><a href="/game-guide/mhwilds-guide/" hreflang="ja" lang="ja">日本語</a><a href="/en/game-guide/mhwilds-guide/" hreflang="en" lang="en" aria-current="page">English</a></nav>
+<p class="lead">Use this guide to find out whether the decorations and charms you own can activate the skills you need. You can also search the catalog without using your inventory.</p>
+<p class="updated">Instructions checked: <time datetime="2026-10-13">October 13, 2026</time> · Applies to the current public browser version</p>
+<nav class="toc" aria-label="On this page"><h2>On this page</h2><ol><li><a href="#start">What the two tools do</a></li><li><a href="#inventory">Register your inventory</a></li><li><a href="#search">Set search conditions</a></li><li><a href="#results">Understand results and limits</a></li><li><a href="#backup">Back up and restore with JSON</a></li><li><a href="#migration">Move data from the old URL</a></li><li><a href="#catalog">Catalog changes and troubleshooting</a></li></ol></nav>
+<section id="start">
+  <h2>1. Use each tool for its purpose</h2>
+  <p>The <a href="https://mhwilds.trinitrotorol.com/inventory/">Inventory Checker</a> records decoration and crafted charm quantities, and the abilities of appraisal charms. The <a href="https://mhwilds.trinitrotorol.com/skill-sim/">Skill Simulator</a> finds equipment combinations for your weapon type and skill requirements.</p>
+  <p>Open both tools on mhwilds.trinitrotorol.com in the same browser on the same device. Your inventory is not automatically available on another device or in another browser. Use the JSON backup described below to transfer it.</p>
+  <p>In either tool, choose <strong>English</strong> in the <strong><span lang="ja">言語</span> / Language</strong> selector. The setting is shared by the two tools on the same site in this browser, when browser storage is available. Opening this English guide does not change the tools’ language automatically.</p>
+  <div class="actions"><a class="button" href="https://mhwilds.trinitrotorol.com/inventory/">Register inventory</a><a class="button secondary" href="https://mhwilds.trinitrotorol.com/skill-sim/">Search equipment</a></div>
+</section>
+<section id="inventory">
+  <h2>2. Register your inventory</h2>
+  <h3>Decorations and crafted charms</h3>
+  <p>Choose <strong>Decorations</strong> or <strong>Crafted charms</strong> in the checker, then search by name, ID or skill. Enter an item’s quantity to save it automatically in this browser. A quantity of 0 means you do not own the item. You can also record multiple copies of a crafted charm.</p>
+  <p>Check the save status at the top of the page after making changes. If you see <strong>Unsaved changes</strong> or <strong>Save conflict · Not saved</strong>, follow the on-screen instructions and export your changes to JSON before closing the page.</p>
+  <h3>Appraisal charms</h3>
+  <p>Choose <strong>Appraisal charms</strong>, then <strong>+ Add appraisal charm</strong>. Enter the skills, levels, slots and rarity shown in the game. You can save a charm that meets the current validation rules, then edit, duplicate or delete it.</p>
+  <p>Charms registered as separate instances remain separate, even if they have similar abilities. If a combination is rejected, first check the abilities in the game. If you suspect a missing validation rule, <a href="/contact/">report it (Japanese contact page)</a> with the abilities and catalog version.</p>
+  <aside class="notice"><h3>Start with a few items</h3><p>You can add more items later. However, a search with <strong>Use owned inventory</strong> treats unregistered decorations as having a quantity of 0. Start by checking the decorations likely to be needed and the charms you want to use, so that missing entries are easier to spot.</p></aside>
+</section>
+<section id="search">
+  <h2>3. Set search conditions</h2>
+  <h3>Required skills and preferred skills</h3>
+  <dl class="definitions"><dt>Required skills</dt><dd>Every specified minimum level must be met. Builds that do not meet these requirements are excluded.</dd><dt>Preferred skills</dt><dd>Among builds that meet the requirements, the search favors higher combined skill levels toward your specified targets. Adding a preferred skill does not make its target level mandatory.</dd></dl>
+  <p>If you must have a skill at Lv. 3, add it to <strong>Required skills</strong>. If you would like to raise another skill when possible, add it to <strong>Preferred skills</strong>. Start with your essential requirements and add more after looking at the results, rather than making everything mandatory at once. This makes each condition’s effect easier to understand.</p>
+  <h3>Weapon type, inventory and result count</h3>
+  <ol class="reading-list"><li>Select a <strong>Weapon type</strong> if needed. <strong>Any</strong> leaves weapon types unrestricted.</li><li>Select <strong>Use owned inventory</strong> to search with your items. Unregistered decorations count as 0, and only registered charms are used. This feature does not record whether you own or can craft weapons or armor.</li><li>Set <strong>Maximum results</strong> from 1 to 20. Start with a small number to check your conditions.</li><li>Select <strong>Search</strong>. Use <strong>Cancel search</strong> if you want to stop and revise the conditions.</li></ol>
+  <p>The current public version calculates in your browser. Even if you select <strong>Use server if available; otherwise use browser</strong>, it uses your browser because server search is not currently enabled. Search time depends on your device and the conditions.</p>
+</section>
+<section id="results">
+  <h2>4. Read the results and understand the limits</h2>
+  <p>Each candidate shows <strong>Equipment</strong>, <strong>Decorations</strong> and <strong>Active skills</strong>. Check which piece of equipment and which slot each decoration uses. Weapon decorations and armor decorations use different slot types.</p>
+  <p>The <strong>Preference score</strong> compares candidates against the preferences you entered. It is not an attack power or actual damage ranking. Check activation conditions in the game and how the skills fit your play style, even when the skill names match.</p>
+  <div class="table-wrap"><table><caption>What the result messages mean</caption><thead><tr><th scope="col">What you see</th><th scope="col">Meaning and next step</th></tr></thead><tbody><tr><th scope="row">Candidates are shown</th><td>Check the equipment and decoration placements. Confirm in the game that you own or can craft the weapons and armor.</td></tr><tr><th scope="row">Showing the maximum number of candidates.</th><td>This does not mean every combination has been listed. Adjust the maximum results or skill conditions to compare builds.</td></tr><tr><th scope="row">The search reached its time limit. / No candidates were found before the time limit.</th><td>The search is incomplete. Even if there are no candidates, this does not prove that no matching build exists.</td></tr><tr><th scope="row">No equipment builds satisfy these conditions.</th><td>This result depends on your inputs and the catalog. Check required levels, missing decoration entries, charm abilities and the catalog version.</td></tr></tbody></table></div>
+  <p>If there are no candidates, review required conditions one at a time, before preferred conditions. If searching without inventory produces candidates, quantities or registered charms may be limiting the search. A build found with relaxed conditions may not be possible with your current items.</p>
+</section>
+<section id="backup">
+  <h2>5. Back up and restore with JSON</h2>
+  <p>Choose <strong>Download JSON</strong> in the checker to save a backup. Do this before changing devices, clearing browser data or making extensive charm edits, so that you retain your previous entries.</p>
+  <p>On the destination device or browser, choose <strong>Restore from JSON</strong>. The checker validates the file and opens a confirmation view. Check the counts and warnings before choosing a method.</p>
+  <dl class="definitions"><dt>Merge with current inventory</dt><dd>For each ID, merging keeps the larger quantity instead of adding quantities. If you currently have 2 and the backup has 3, the result is 3. A merge is blocked if the same appraisal charm ID has different abilities.</dd><dt>Replace all inventory with the backup</dt><dd>This replaces your current entries with the backup. If you also need the current entries, save them to a separate JSON file first.</dd></dl>
+  <p>Different appraisal charm IDs remain separate instances even when their abilities match. If saved data is damaged, a standard JSON download does not include the damaged original data. Use <strong>Export original saved data</strong> when that option is shown to preserve it.</p>
+</section>
+<section id="migration">
+  <h2>Move saved data from the old URL</h2>
+  <p>The Wilds tools have moved to mhwilds.trinitrotorol.com. Browser storage on the old and new sites is separate, so your previous inventory does not appear automatically. The move did not delete your old data.</p>
+  <ol class="reading-list"><li>In the browser and on the device you used before, open the <a href="https://trinitrotorol.com/game-guide/mhwilds-inventory-checker/?legacy=1">Inventory Checker on the old site</a> and choose <strong>Download JSON</strong>.</li><li>Open the <a href="https://mhwilds.trinitrotorol.com/inventory/">Inventory Checker on the new site</a>, choose <strong>Restore from JSON</strong>, and select the saved file.</li><li>Review its contents and warnings, then choose merge or replace. If you already have entries on the new site, back those up to JSON first.</li></ol>
+  <p>The old site also has its own language setting. Select <strong>English</strong> under <strong><span lang="ja">言語</span> / Language</strong> there if you want the English button labels used in these instructions.</p>
+  <p>If the old site reports damaged data, use <strong>Export original saved data</strong> to preserve it. Do not clear the browser’s site data until you have checked that the transfer succeeded. Continue registering and editing items on the new site afterward.</p>
+</section>
+<section id="catalog">
+  <h2>6. Handle catalog changes and save errors</h2>
+  <h3>When the saved and current catalog versions differ</h3>
+  <p>IDs missing from the current catalog and appraisal charms that cannot be validated under the current rules are kept, with warnings. They may be unavailable for search, so review the affected entries. Check them in the Inventory Checker and use <strong>Update catalog reference</strong>. If the simulator asks you to acknowledge exclusions, review the affected items before continuing.</p>
+  <h3>Save conflicts and storage errors</h3>
+  <p>Editing the same inventory in several tabs at once can cause a save conflict. Export unsaved changes to JSON, choose <strong>Load the latest saved data</strong> to review the current state, then merge. If browser storage is unavailable, check your browser’s privacy settings as well.</p>
+  <h3>Data sources and reports</h3>
+  <p>Equipment and skill data use MHDB, and appraisal charm validation refers to publicly available reverse-engineering information. See <a href="/about/#sources">data sources and update policy (Japanese)</a> for details. If a problem persists, send the catalog version, steps and specific inputs through the <a href="/contact/">contact page (Japanese)</a>. You do not need to publish your entire backup or personal information.</p>
+</section>
+<div class="actions"><a class="button" href="https://mhwilds.trinitrotorol.com/inventory/">Open Inventory Checker</a><a class="button secondary" href="https://mhwilds.trinitrotorol.com/skill-sim/">Open Skill Simulator</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p class="footer-brand">trinitrotorol</p><nav aria-label="Site information"><ul><li><a href="/game-guide/">Tools (Japanese)</a></li><li><a href="/about/">About (Japanese)</a></li><li><a href="/contact/">Contact (Japanese)</a></li><li><a href="/privacy/">Privacy policy (Japanese)</a></li></ul></nav><p>This is an independently operated, unofficial site. It is not affiliated with the games’ developers or publishers.</p><p><small>© 2026 trinitrotorol</small></p></div></footer>
+</body>
+</html>
